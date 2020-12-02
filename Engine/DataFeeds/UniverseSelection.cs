@@ -156,7 +156,7 @@ namespace QuantConnect.Lean.Engine.DataFeeds
                     }
 
                     // use all available threads, the entire system is waiting for this to complete
-                    var options = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
+                    var options = new ParallelOptions { MaxDegreeOfParallelism = 2 };
                     Parallel.ForEach(selectSymbolsResult, options, symbol =>
                     {
                         var config = FineFundamentalUniverse.CreateConfiguration(symbol);
