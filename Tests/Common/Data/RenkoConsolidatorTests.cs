@@ -191,22 +191,22 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedNoFallingRenko()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var wickedRenkoConsolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
-            consolidator.DataConsolidated += (sender, renko) =>
+            wickedRenkoConsolidator.DataConsolidated += (sender, renko) =>
                 renkos.Add(renko);
 
             var tickOn1 = new DateTime(2016, 1, 1, 17, 0, 0, 0);
             var tickOn2 = new DateTime(2016, 1, 1, 17, 0, 0, 1);
 
-            consolidator.Update(new IndicatorDataPoint(tickOn1, 10.0m));
-            consolidator.Update(new IndicatorDataPoint(tickOn2, 9.1m));
+            wickedRenkoConsolidator.Update(new IndicatorDataPoint(tickOn1, 10.0m));
+            wickedRenkoConsolidator.Update(new IndicatorDataPoint(tickOn2, 9.1m));
 
             Assert.AreEqual(renkos.Count, 0);
 
-            var openRenko = consolidator.OpenRenkoBar;
+            var openRenko = wickedRenkoConsolidator.OpenRenkoBar;
 
             Assert.AreEqual(openRenko.Open, 10.0m);
             Assert.AreEqual(openRenko.High, 10.0m);
@@ -217,7 +217,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedNoRisingRenko()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -243,7 +243,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedNoFallingRenkoKissLimit()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -269,7 +269,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedNoRisingRenkoKissLimit()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -295,7 +295,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedOneFallingRenko()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -332,7 +332,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedOneRisingRenko()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -369,7 +369,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedTwoFallingThenOneRisingRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -428,7 +428,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedTwoRisingThenOneFallingRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -487,7 +487,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedThreeRisingGapRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -542,7 +542,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedThreeFallingGapRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -595,7 +595,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedTwoFallingThenThreeRisingGapRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
@@ -668,7 +668,7 @@ namespace QuantConnect.Tests.Common.Data
         [Test]
         public void WickedTwoRisingThenThreeFallingGapRenkos()
         {
-            var consolidator = new RenkoConsolidator(1.0m, RenkoType.Wicked);
+            var consolidator = new WickedRenkoConsolidator(1.0m);
 
             var renkos = new List<RenkoBar>();
 
